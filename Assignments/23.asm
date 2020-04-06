@@ -4,12 +4,14 @@
 
 org 100h
 
-mov bl,01110111b  
-mov al,bl
-and bl,01111111b 
+mov al,01h
+mov ah,34h
+   
 
-mov bl,al
-and bl,11111110b 
+rol al,4h     
+rol ah,4h
+
+
 
 ret
 

@@ -4,12 +4,12 @@
 
 org 100h
 
-mov bl,01110111b  
-mov al,bl
-and bl,01111111b 
+mov cl,01110111b  
+mov al,cl
+or cl,10000000b 
 
-mov bl,al
-and bl,11111110b 
+mov cl,al
+or cl,0000001b 
 
 ret
 
