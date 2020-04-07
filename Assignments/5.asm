@@ -7,33 +7,47 @@ org 100h
 
 mov ax, 000000000000000b
 mov ds, ax   
-mov si, 000000000000000b    
-MOV byte ptr ds:[si],3h
-MOV bl, byte ptr ds:[si] 
+mov si, 000000000000000b
+mov bp,si
+   
+mov byte ptr ds:[si],3h
 
 inc si
 mov byte ptr ds:[si],4h
-mov bh,byte ptr ds:[si]
+
  
 inc si
 mov byte ptr ds:[si],5h
-mov cl,byte ptr ds:[si] 
+mov cl,00h
+mov bl,00h
 
-add bl,bh
-add bl,cl
+L:
+   mov bh, byte ptr ds:[bp]
+   cmp cl,3h
+   jb A
+   jmp Exit   
+  
 
-mov al,bl
+A:
+  add bl,bh
+  inc cl 
+  inc bp 
+  mov al,bl
+  out 0000h,al
+  jmp L
 
-out 0000h,al
+ 
 
 
 
 
 
+Exit:
+  end
 
 
 
-
+                                    
 
 
 

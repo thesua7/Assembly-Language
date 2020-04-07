@@ -10,18 +10,21 @@ mov ds, ax
 mov si, 000000000000000b 
 mov bp,si
    
-MOV byte ptr ds:[si],8h
-  
+MOV byte ptr ds:[si],3h
+MOV dl,byte ptr ds:[si]  
  
 inc si 
-MOV byte ptr ds:[si],9h     
+MOV byte ptr ds:[si],0h   
+
+inc si 
+MOV byte ptr ds:[si],2h   
             
 mov cl,00h
 
 
 L:   
    MOV bh, byte ptr ds:[bp]
-   cmp cl,2h
+   cmp cl,3h
    jl A
    jmp Exit   
   
@@ -30,15 +33,14 @@ L:
 A:
  inc cl
  inc bp
- cmp bh,0h
- jae Store
-
+ cmp bh,dl
+ jbe Store  ;jbe or jb for unsigned || jl or jle for signed
+ jmp L
 
  
  
 Store:
-  mov al,bh
-  out 00h,al
+  mov dl,bh
   jmp L
   
   
